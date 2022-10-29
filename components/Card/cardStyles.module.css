@@ -1,0 +1,13 @@
+.card {
+  border: 1px solid #CED7E7;
+  border-radius: 10px;
+  width: 100%
+}
+
+.large {
+  padding: 30px;
+}
+
+.small {
+  padding: 16px;
+}

@@ -1,0 +1,12 @@
+.input {
+  border: none;
+  width: 100%;
+}
+
+.post {
+  border: var(--efuse-border);
+  border-radius: 8px;
+  padding: 15px 20px;
+}
+
+
