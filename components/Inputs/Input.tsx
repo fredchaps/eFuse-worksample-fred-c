@@ -1,6 +1,9 @@
+import { Poppins } from "@next/font/google";
 import classnames from "classnames";
 import { ChangeEvent } from "react";
 import inputStyles from "./inputStyles.module.css";
+
+const poppins = Poppins({ weight: "500" });
 
 type Props = {
   onChange: (string) => void;
@@ -22,7 +25,7 @@ const Input: React.FC<Props> = ({
     <input
       onChange={handleChange}
       placeholder={placeholder}
-      className={classnames(inputStyles.input, classNames)}
+      className={classnames(inputStyles.input, poppins.className, classNames)}
       value={value}
     />
   );

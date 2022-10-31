@@ -11,20 +11,9 @@ import usePostsStore from "../state/posts";
 
 const openSans = Open_Sans();
 
-const createNewContent = (text, user) => ({
-  text: text,
-  user: user,
-  createdAt: new Date(),
-  views: 1,
-  shares: 0,
-  comments: [],
-  hypes: 0,
-});
-
 export default function Home() {
   // TODO: change to get from usePostsStore
   const posts = usePostsStore((state) => state.posts);
-
   return (
     <div className={classNames(styles.container, openSans.className)}>
       <Head>
