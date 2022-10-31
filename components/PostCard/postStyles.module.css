@@ -1,0 +1,67 @@
+.postContent {
+  font-size: 12px;
+  margin: 15px 0;
+}
+
+.reactionWrapper {
+  margin-right: 16px;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.reactionIcon {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reactionWrapper .reactionIcon {
+  border-radius: 100%;
+}
+
+.hover:hover .comments {
+  background-color: var(--efuse-blue-fade);
+}
+
+.hover:hover .comments path {
+  fill: var(--efuse-blue-full);
+}
+
+.clicked .comments {
+  background-color: var(--efuse-blue-full);
+}
+
+.clicked .comments path {
+  fill: white;
+}
+
+.hover:hover .hypes {
+  background-color: var(--efuse-orange-fade);
+}
+
+.hover:hover .hypes path {
+  fill: var(--efuse-orange-full);
+}
+
+.clicked .hypes {
+  background-color: var(--efuse-orange-full);
+}
+
+.clicked .hypes path {
+  fill: white;
+}
+
+.hover:hover .shares {
+  background-color: var(--efuse-font-content-fade);
+}
+
+.clicked .shares {
+  background-color: var(--efuse-font-content);
+}
+
+.clicked .shares path {
+  fill: white;
+}
