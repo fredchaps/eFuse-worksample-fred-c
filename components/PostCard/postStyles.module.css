@@ -18,6 +18,18 @@
   justify-content: center;
 }
 
+.reactionTypeText {
+  font-size: 10px;
+}
+
+.soHotRightNow {
+  color: var(--efuse-orange-full);
+}
+
+.soHotRightNowIcon .hypes path{
+  fill: var(--efuse-orange-full);
+}
+
 .reactionWrapper .reactionIcon {
   border-radius: 100%;
 }

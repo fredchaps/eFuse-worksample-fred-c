@@ -4,12 +4,10 @@ import Image from "next/image";
 import Card from "../components/Card";
 import { PostInput } from "../components/Inputs";
 import styles from "../styles/Home.module.css";
-import { Open_Sans } from "@next/font/google";
 import classNames from "classnames";
 import PostCard from "../components/PostCard";
 import usePostsStore from "../state/posts";
-
-const openSans = Open_Sans();
+import { openSans } from "../shared/fonts";
 
 export default function Home() {
   // TODO: change to get from usePostsStore

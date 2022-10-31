@@ -1,9 +1,7 @@
-import { Poppins } from "@next/font/google";
 import classnames from "classnames";
 import { ChangeEvent } from "react";
+import { poppins } from "../../shared/fonts";
 import inputStyles from "./inputStyles.module.css";
-
-const poppins = Poppins({ weight: "500" });
 
 type Props = {
   onChange: (string) => void;

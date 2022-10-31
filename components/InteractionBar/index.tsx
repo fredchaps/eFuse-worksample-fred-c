@@ -1,4 +1,3 @@
-import { Poppins } from "@next/font/google";
 import styles from "styles/Home.module.css";
 import classnames from "classnames";
 import capitalize from "lodash.capitalize";
@@ -8,10 +7,7 @@ import Comments from "public/Comments.svg";
 import Hypes from "public/Hypes.svg";
 import Shares from "public/Shares.svg";
 import { useState } from "react";
-
-console.log(postStyles);
-
-const poppins = Poppins({ weight: "500" });
+import { poppins } from "../../shared/fonts";
 
 type Props = Pick<Post, "comments" | "hypes" | "shares" | "views" | "id">;
 
@@ -44,6 +40,7 @@ const Reaction = ({ type, count, onClick }) => {
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       className={classnames(postStyles.reactionWrapper, styles.flexRow, {
+        [postStyles.soHotRightNowIcon]: type === "hypes" && count > 100,
         [postStyles.hover]: !isClicked,
         [postStyles.clicked]: isClicked,
       })}
@@ -57,10 +54,16 @@ const Reaction = ({ type, count, onClick }) => {
           <Icon type={type} classNames={classnames()} />
         </div>
       )}
-      <div className={classnames(styles.textBold, poppins.className)}>
+      <div
+        className={classnames(styles.textBold, poppins.className, {
+          [postStyles.soHotRightNow]: type === "hypes" && count > 100,
+        })}
+      >
         &nbsp;{count}
       </div>
-      <div>&nbsp;{capitalize(type)}</div>
+      <div className={postStyles.reactionTypeText}>
+        &nbsp;{capitalize(type)}
+      </div>
     </button>
   );
 };
