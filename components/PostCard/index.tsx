@@ -4,13 +4,16 @@ import Card from "../Card";
 import { CommentInput } from "../Inputs";
 import InteractionBar from "../InteractionBar";
 import UserHeader from "../UserHeader";
+import { useState } from "react";
 
 type Props = {
   post: Post;
 };
 
 const PostCard: React.FC<Props> = ({ post }) => {
+  const [newComment, setNewComment] = useState("");
   const { createdAt, text, hypes, comments, shares, views, id } = post;
+
   return (
     <Card size="large">
       <UserHeader size="large" postDate={createdAt} />
@@ -22,7 +25,7 @@ const PostCard: React.FC<Props> = ({ post }) => {
         views={views}
         id={id}
       />
-      <CommentInput />
+      <CommentInput onChange={setNewComment} value={newComment} />
     </Card>
   );
 };

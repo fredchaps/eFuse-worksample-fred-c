@@ -22,3 +22,52 @@
 .flexEnd {
   align-self: flex-end;
 }
+
+.commentWrapper {
+  position: relative;
+}
+
+.commentIcon {
+  position: absolute;
+  top: 28px;
+  left: 15px;
+}
+
+.addIcon {
+  position: absolute;
+  top: 25px;
+  right: 15px;
+}
+
+.commentButton {
+  border: none;
+  background: transparent;
+  position: absolute;
+  top: 25px;
+  right: 15px;
+  color: var(--efuse-font-normal);
+}
+
+.commentButtonEnabled {
+  color: var(--efuse-blue-full)
+}
+
+.comment {
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin-top: 15px;
+  background-color: var(--efuse-comment-background);
+}
+
+.comment::placeholder {
+  padding-left: 30px;
+}
+
+.comment:focus {
+  background-color: white;
+  outline: 1px solid var(--efuse-blue-full);
+}
+
+.comment:focus::placeholder {
+  padding-left: 0px;
+}

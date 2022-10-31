@@ -5,13 +5,17 @@ import inputStyles from "./inputStyles.module.css";
 
 type Props = {
   onChange: (string) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
   placeholder: string;
   value: string;
-  classNames: string;
+  classNames?: string;
 };
 
 const Input: React.FC<Props> = ({
   onChange,
+  onFocus,
+  onBlur,
   placeholder,
   value,
   classNames,
@@ -24,6 +28,8 @@ const Input: React.FC<Props> = ({
       onChange={handleChange}
       placeholder={placeholder}
       className={classnames(inputStyles.input, poppins.className, classNames)}
+      onFocus={onFocus}
+      onBlur={onBlur}
       value={value}
     />
   );

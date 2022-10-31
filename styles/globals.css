@@ -12,6 +12,7 @@
   --efuse-orange-fade: rgba(244, 73, 0, 0.3);
   --efuse-blue-full: #006CFA;
   --efuse-blue-fade: rgba(0, 108, 250, 0.3);
+  --efuse-comment-background: #F1F4F8;
 }
 
 html,
