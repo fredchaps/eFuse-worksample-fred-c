@@ -66,9 +66,14 @@ const Reaction = ({ type, count, onClick }) => {
         </div>
       )}
       <div
-        className={classnames(styles.textBold, poppins.className, {
-          [postStyles.soHotRightNow]: type === "hypes" && count > 100,
-        })}
+        className={classnames(
+          styles.textBold,
+          poppins.className,
+          postStyles.reactionCount,
+          {
+            [postStyles.soHotRightNow]: type === "hypes" && count > 100,
+          }
+        )}
         data-testid={`${type}-count`}
       >
         &nbsp;{count}
@@ -100,7 +105,7 @@ const InteractionBar: React.FC<Props> = ({
     }
   };
   return (
-    <div className={styles.flexRow}>
+    <div className={classnames(styles.flexRow, styles.overflow)}>
       <Reaction count={hypes} type="hypes" onClick={handleHypeClick} />
       {!!comments && (
         <Reaction count={comments?.length} type="comments" onClick={() => {}} />

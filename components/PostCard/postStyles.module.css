@@ -1,6 +1,7 @@
 .postContent {
   font-size: 12px;
   margin: 15px 0;
+  color: var(--efuse-font-content);
 }
 
 .reactionWrapper {
@@ -18,8 +19,13 @@
   justify-content: center;
 }
 
+.reactionCount {
+  font-size: '12px';
+}
+
 .reactionTypeText {
   font-size: 10px;
+  color: var(--efuse-font-normal)
 }
 
 .soHotRightNow {

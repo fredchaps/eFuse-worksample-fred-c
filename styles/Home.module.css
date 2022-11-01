@@ -150,6 +150,10 @@
   margin-left: 1rem;
 }
 
+.overflow {
+  overflow: auto;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
