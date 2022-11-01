@@ -32,6 +32,13 @@ a {
   box-sizing: border-box;
 }
 
+hr {
+  margin: 16px 0;
+  background: #CED7E7;
+  height: 1px;
+  border: none;
+}
+
 
 /*
 @media (prefers-color-scheme: dark) {

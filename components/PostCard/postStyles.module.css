@@ -50,6 +50,22 @@
   fill: white;
 }
 
+.hover:hover .replies {
+  background-color: var(--efuse-blue-fade);
+}
+
+.hover:hover .replies path {
+  fill: var(--efuse-blue-full);
+}
+
+.clicked .replies {
+  background-color: var(--efuse-blue-full);
+}
+
+.clicked .replies path {
+  fill: white;
+}
+
 .hover:hover .hypes {
   background-color: var(--efuse-orange-fade);
 }

@@ -11,7 +11,6 @@ type Props = {
 };
 
 const PostCard: React.FC<Props> = ({ post }) => {
-  const [newComment, setNewComment] = useState("");
   const { createdAt, text, hypes, comments, shares, views, id } = post;
 
   return (
@@ -25,7 +24,21 @@ const PostCard: React.FC<Props> = ({ post }) => {
         views={views}
         id={id}
       />
-      <CommentInput onChange={setNewComment} value={newComment} />
+      <CommentInput id={id} />
+      {comments.length > 0 &&
+        comments.map((comment, idx) => (
+          <div key={idx}>
+            <hr />
+            <UserHeader size="small" postDate={comment.createdAt} />
+            <div className={postStyles.postContent}>{comment.text}</div>
+            <InteractionBar
+              hypes={comment.hypes}
+              replies={comment.replies}
+              shares={comment.shares}
+              id={comment.id}
+            />
+          </div>
+        ))}
     </Card>
   );
 };

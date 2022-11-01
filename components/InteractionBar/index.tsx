@@ -2,17 +2,25 @@ import styles from "styles/Home.module.css";
 import classnames from "classnames";
 import capitalize from "lodash.capitalize";
 import postStyles from "../PostCard/postStyles.module.css";
-import usePostsStore, { Post } from "../../state/posts";
+import usePostsStore, { Comment } from "../../state/posts";
 import Comments from "public/Comments.svg";
 import Hypes from "public/Hypes.svg";
 import Shares from "public/Shares.svg";
 import { useState } from "react";
 import { poppins } from "../../shared/fonts";
 
-type Props = Pick<Post, "comments" | "hypes" | "shares" | "views" | "id">;
+type Props = {
+  hypes: number;
+  comments?: Comment[];
+  replies?: Comment[];
+  shares: number;
+  views?: number;
+  id: string;
+};
 
 const Icon = ({ type, classNames }) => {
   switch (type) {
+    case "replies":
     case "comments":
       return <Comments className={classNames} />;
     case "hypes":
@@ -26,14 +34,15 @@ const Icon = ({ type, classNames }) => {
 
 const Reaction = ({ type, count, onClick }) => {
   const [isClicked, setIsClicked] = useState(false);
+
   const handleMouseDown = () => {
-    console.log("down");
     setIsClicked(true);
   };
+
   const handleMouseUp = () => {
-    console.log("up");
     setIsClicked(false);
   };
+
   return (
     <button
       onClick={onClick}
@@ -71,6 +80,7 @@ const Reaction = ({ type, count, onClick }) => {
 const InteractionBar: React.FC<Props> = ({
   hypes,
   comments,
+  replies,
   shares,
   views,
   id,
@@ -79,7 +89,12 @@ const InteractionBar: React.FC<Props> = ({
   return (
     <div className={styles.flexRow}>
       <Reaction count={hypes} type="hypes" onClick={() => getHype(id)} />
-      <Reaction count={comments?.length} type="comments" onClick={() => {}} />
+      {!!comments && (
+        <Reaction count={comments?.length} type="comments" onClick={() => {}} />
+      )}
+      {!!replies && (
+        <Reaction count={replies?.length} type="replies" onClick={() => {}} />
+      )}
       <Reaction count={shares} type="shares" onClick={() => {}} />
       <Reaction count={views} type="views" onClick={() => {}} />
     </div>

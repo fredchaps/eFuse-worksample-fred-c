@@ -5,36 +5,62 @@ import inputStyles from "./inputStyles.module.css";
 import { useState } from "react";
 import classNames from "classnames";
 import { poppins } from "../../shared/fonts";
+import usePostsStore from "../../state/posts";
+import useUserStore from "../../state/user";
 
 type Props = {
-  onChange: (value) => void;
-  value: string;
+  id: string;
 };
 
-const CommentInput: React.FC<Props> = ({ onChange, value }) => {
+const CommentInput: React.FC<Props> = ({ id }) => {
+  const submitComment = usePostsStore((state) => state.submitComment);
+  const user = useUserStore((state) => state.user);
+  const [newComment, setNewComment] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (newComment.length < 1) return null;
+    submitComment(id, {
+      user: user,
+      text: newComment,
+      createdAt: new Date(),
+      hypes: 0,
+      replies: [],
+      shares: 0,
+    });
+    setNewComment("");
+  };
+
   return (
-    <div className={inputStyles.commentWrapper}>
-      {!isFocused && <Comments className={inputStyles.commentIcon} />}
-      <Input
-        classNames={inputStyles.comment}
-        onChange={onChange}
-        placeholder={"Add comment"}
-        value={value}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-      />
-      {!isFocused && <Add className={inputStyles.addIcon} />}
-      {isFocused && (
-        <button
-          className={classNames(inputStyles.commentButton, poppins.className, {
-            [inputStyles.commentButtonEnabled]: value.length > 0,
-          })}
-        >
-          Post
-        </button>
-      )}
-    </div>
+    <form onSubmit={handleSubmit}>
+      <div className={inputStyles.commentWrapper}>
+        {!isFocused && <Comments className={inputStyles.commentIcon} />}
+        <Input
+          classNames={inputStyles.comment}
+          onChange={setNewComment}
+          placeholder={"Add comment"}
+          value={newComment}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+        />
+        {!isFocused && <Add className={inputStyles.addIcon} />}
+        {isFocused && (
+          <button
+            className={classNames(
+              inputStyles.commentButton,
+              poppins.className,
+              {
+                [inputStyles.commentButtonEnabled]: newComment.length > 0,
+              }
+            )}
+            onClick={handleSubmit}
+          >
+            Post
+          </button>
+        )}
+      </div>
+    </form>
   );
 };
 

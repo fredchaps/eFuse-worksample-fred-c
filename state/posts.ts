@@ -19,8 +19,8 @@ type SubmittedContent = {
   id: string;
 };
 
-interface Comment extends SubmittedContent {
-  replies: number;
+export interface Comment extends SubmittedContent {
+  replies: Comment[];
 }
 
 export interface Post extends SubmittedContent {
@@ -50,7 +50,15 @@ const usePostsStore = create<PostsState>((set) => ({
   posts: [],
   submitPost: (newPost) =>
     set((state) => ({ posts: [newPost, ...state.posts] })),
-  submitComment: (id, newComment) => set((state) => ({})),
+  submitComment: (id, newComment) =>
+    set(
+      produce((state) => {
+        const foundPost = state.posts.find((post) => post.id === id);
+        if (foundPost) {
+          foundPost.comments.push(newComment);
+        }
+      })
+    ),
   getHype: (id) =>
     set(
       produce((state) => {
