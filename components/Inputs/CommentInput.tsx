@@ -5,7 +5,7 @@ import inputStyles from "./inputStyles.module.css";
 import { useState } from "react";
 import classNames from "classnames";
 import { poppins } from "../../shared/fonts";
-import usePostsStore from "../../state/posts";
+import usePostsStore, { getId } from "../../state/posts";
 import useUserStore from "../../state/user";
 
 type Props = {
@@ -28,6 +28,7 @@ const CommentInput: React.FC<Props> = ({ id }) => {
       hypes: 0,
       replies: [],
       shares: 0,
+      id: getId(),
     });
     setNewComment("");
   };
@@ -55,6 +56,7 @@ const CommentInput: React.FC<Props> = ({ id }) => {
               }
             )}
             onClick={handleSubmit}
+            data-testid="comment-button"
           >
             Post
           </button>

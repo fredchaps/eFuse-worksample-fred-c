@@ -31,7 +31,10 @@ const UserHeader: React.FC<Props> = ({ size, postDate }) => {
         className={styles.rounded}
       />
       <div className={styles.oneRemLeft}>
-        <div className={classnames(poppins.className, styles.h2)}>
+        <div
+          className={classnames(poppins.className, styles.h2)}
+          data-testid="username"
+        >
           {user.username}
         </div>
         <div className={styles.textS}>{timeSince.fromNow()}</div>

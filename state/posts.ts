@@ -5,7 +5,7 @@ import { User } from "./user";
 let POST_ID = 0;
 
 // This is fine for local state. Posts would be coming from the BE and would have id's set there
-const getId = () => {
+export const getId = () => {
   POST_ID += 1;
   return POST_ID;
 };
@@ -32,7 +32,8 @@ type PostsState = {
   posts: Post[];
   submitPost: (newPost) => void;
   submitComment: (id, newComment) => void;
-  getHype: (id) => void; // sets hype, doesn't 'get' hype.
+  getPostHype: (id) => void; // sets hype, doesn't 'get' hype.
+  getCommentHype: (postId, commentId) => void;
 };
 
 export const createNewContent = (text, user) => ({
@@ -59,12 +60,25 @@ const usePostsStore = create<PostsState>((set) => ({
         }
       })
     ),
-  getHype: (id) =>
+  getPostHype: (id) =>
     set(
       produce((state) => {
         const foundPost = state.posts.find((post) => post.id === id);
         if (foundPost) {
           foundPost.hypes += 1;
+        }
+      })
+    ),
+  getCommentHype: (postId, commentId) =>
+    set(
+      produce((state) => {
+        // This is a little messy...
+        const foundPost = state.posts.find((post) => post.id === postId);
+        const foundComment = foundPost.comments.find(
+          (comment) => comment.id === commentId
+        );
+        if (foundComment) {
+          foundComment.hypes += 1;
         }
       })
     ),

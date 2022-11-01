@@ -15,7 +15,8 @@ type Props = {
   replies?: Comment[];
   shares: number;
   views?: number;
-  id: string;
+  postId: string;
+  commentId?: string;
 };
 
 const Icon = ({ type, classNames }) => {
@@ -53,6 +54,7 @@ const Reaction = ({ type, count, onClick }) => {
         [postStyles.hover]: !isClicked,
         [postStyles.clicked]: isClicked,
       })}
+      data-testid={`${type}-button`}
     >
       {type !== "views" && (
         <div
@@ -67,6 +69,7 @@ const Reaction = ({ type, count, onClick }) => {
         className={classnames(styles.textBold, poppins.className, {
           [postStyles.soHotRightNow]: type === "hypes" && count > 100,
         })}
+        data-testid={`${type}-count`}
       >
         &nbsp;{count}
       </div>
@@ -83,12 +86,22 @@ const InteractionBar: React.FC<Props> = ({
   replies,
   shares,
   views,
-  id,
+  postId,
+  commentId,
 }) => {
-  const getHype = usePostsStore((state) => state.getHype);
+  const getPostHype = usePostsStore((state) => state.getPostHype);
+  const getCommentHype = usePostsStore((state) => state.getCommentHype);
+
+  const handleHypeClick = () => {
+    if (!!comments) {
+      getPostHype(postId);
+    } else if (!!replies) {
+      getCommentHype(postId, commentId);
+    }
+  };
   return (
     <div className={styles.flexRow}>
-      <Reaction count={hypes} type="hypes" onClick={() => getHype(id)} />
+      <Reaction count={hypes} type="hypes" onClick={handleHypeClick} />
       {!!comments && (
         <Reaction count={comments?.length} type="comments" onClick={() => {}} />
       )}

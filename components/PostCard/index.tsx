@@ -22,7 +22,7 @@ const PostCard: React.FC<Props> = ({ post }) => {
         comments={comments}
         shares={shares}
         views={views}
-        id={id}
+        postId={id}
       />
       <CommentInput id={id} />
       {comments.length > 0 &&
@@ -35,7 +35,8 @@ const PostCard: React.FC<Props> = ({ post }) => {
               hypes={comment.hypes}
               replies={comment.replies}
               shares={comment.shares}
-              id={comment.id}
+              commentId={comment.id}
+              postId={id}
             />
           </div>
         ))}
